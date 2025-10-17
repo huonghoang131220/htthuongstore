@@ -1,0 +1,83 @@
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 14px;
+  margin: 20px 0 10px;
+}
+
+.category-container {
+  padding: 20px 15%;
+  box-sizing: border-box;
+}
+
+.breadcrumb a {
+  text-decoration: none;
+  color: #d63384; /* màu link */
+  transition: color 0.3s;
+}
+
+.breadcrumb a:hover {
+  color: #ff4081;
+}
+
+.breadcrumb span {
+  color: #555;
+}
+
+/* Title của category */
+.category-title-page {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Shoes list */
+.shoes-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.shoe-card {
+  width: 200px;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  padding: 10px;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.shoe-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.shoe-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.shoe-card h4 {
+  font-size: 16px;
+  margin: 10px 0 5px;
+}
+
+.shoe-card .brand {
+  font-size: 14px;
+  color: #777;
+}
+
+.shoe-card .price {
+  font-weight: bold;
+  color: #d63384;
+  margin: 5px 0;
+}
+
+.shoe-card .status.in-stock {
+  color: green;
+}
+
+.shoe-card .status.out-stock {
+  color: red;
+}
