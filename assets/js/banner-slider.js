@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
     startAutoSlide();
   }
 
-  // Khởi động
-  //goToSlide(currentIndex, true);
- // startAutoSlide();
+  //Khởi động
+  goToSlide(currentIndex, true);
+ startAutoSlide();
 });

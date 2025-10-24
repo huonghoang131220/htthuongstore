@@ -38,7 +38,7 @@ export async function renderShoesCategory(category) {
   const shoes = await fetchShoesOnce();
   container.innerHTML = shoes.map(shoe => `
       <div class="shoe-card" data-id="${shoe.id}">
-        <img src="${shoe.image}" alt="${shoe.name}" onerror="this.src='assets/images/placeholder.png'">
+        <img src="${shoe.image}" alt="${shoe.name}" onerror="this.src='assets/images/image_placeholder.jpg'">
         <h4>${shoe.name}</h4>
         <p class="brand">${shoe.brand}</p>
         <p class="price">${fmtPrice(shoe.price)}</p>

@@ -7,6 +7,7 @@ const firebaseConfig = {
     apiKey: "AIzaSyAKD5tVbfw0LlW_k79ZbHNBYCnZmRXr9vA",
     authDomain: "htthuongstore.firebaseapp.com",
     projectId: "htthuongstore",
+    databaseURL: "https://htthuongstore-default-rtdb.asia-southeast1.firebasedatabase.app",
     storageBucket: "htthuongstore.firebasestorage.app",
     messagingSenderId: "751738193889",
     appId: "1:751738193889:web:cb76e8dc1f4500e48374a0",
