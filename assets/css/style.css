@@ -210,33 +210,62 @@ main {
   color: inherit;
   display: block;
 }
-.breadcrumb {
+.buttons {
   display: flex;
-  align-items: center; /* Căn giữa icon và text theo chiều dọc */
-  gap: 6px; /* Khoảng cách giữa các phần */
-  font-size: 15px;
-  color: #333;
+  gap: 12px;        /* khoảng cách giữa các nút */
+  flex-wrap: wrap;   /* nếu nhỏ màn hình, xuống hàng */
 }
 
-.breadcrumb-home {
-  display: flex;
+/* Nút chung */
+.buttons .btn {
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 200px;       /* set cứng */
+  height: 50px;
+  padding: 0 12px;
+  border-radius: 8px;
   text-decoration: none;
-  color: inherit;
-  font-weight: 500;
-}
-
-.icon-home {
-  width: 18px;
-  height: 18px;
-  object-fit: contain;
-  margin-right: 4px;
-}
-
-.breadcrumb-separator {
-  color: #888;
-}
-
-.breadcrumb-current {
   font-weight: 600;
+  color: #fff;
+  background: #555;   /* màu mặc định nếu cần */
+  transition: all 0.3s ease;
+}
+
+/* Nút Zalo */
+.buttons .zalo-btn {
+  background: #00aaff;
+}
+
+/* Nút Messenger */
+.buttons .messenger-btn {
+  background: #ff1540;
+}
+
+/* Icon trong nút */
+.buttons .btn img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+/* Hover */
+.buttons .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .buttons .btn {
+    width: 150px;
+    height: 45px;
+    font-size: 14px;
+  }
+
+  .buttons .btn img {
+    width: 22px;
+    height: 22px;
+  }
 }

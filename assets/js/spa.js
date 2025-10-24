@@ -9,7 +9,6 @@ function attachCategoryClicks() {
       e.preventDefault();
       const categoryKey = link.dataset.category; // "shoes" | "clothes" | "accessory"
       const categoryName = link.textContent.trim();
-
       renderShoesCategory(categoryKey, categoryName,"");
       history.pushState({ page: categoryKey }, "", `#${categoryKey}`);
     });
