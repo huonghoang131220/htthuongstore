@@ -16,7 +16,8 @@ console.log("brand:", shoe.brand, "relatedShoes:", relatedShoes);
     <div class="page-detail">
 
       <nav class="breadcrumb">
-        <a href="#" id="back-home">🏠 Trang chủ</a> › 
+        <a href="#" id="back-home"><img src="assets/images/ic_home.png" class="icon-home" alt="Trang chủ">
+ Trang chủ</a> › 
         <a href="#" id="back-category">${shoe.brand}</a> › 
         <span>${shoe.name}</span>
       </nav>
@@ -43,7 +44,7 @@ console.log("brand:", shoe.brand, "relatedShoes:", relatedShoes);
             <a class="btn btn-messenger" href="https://www.facebook.com/messages/t/8110668508980679" target="_blank">
               <span class="icon">📩</span> Đặt hàng qua Messenger
             </a>
-            <a class="btn btn-zalo" href="https://zalo.me/0367543039">
+            <a class="btn btn-zalo" href="https://zalo.me/0367543039" target="_blank">
               <span class="icon">💬</span> Nhắn Zalo 0367543039
             </a>
           </div>
@@ -97,14 +98,20 @@ relatedContainer.querySelectorAll(".related-card").forEach(card => {
   card.addEventListener("click", () => {
     const id = parseInt(card.dataset.id);
     const shoeClicked = shoes.find(s => s.id === id);
-    if (shoeClicked) renderShoeDetail(shoeClicked);
+    if (shoeClicked) {
+      // Xóa trang chi tiết cũ và cuộn lên đầu
+      const main = document.getElementById("main-content");
+      main.innerHTML = "";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      renderShoeDetail(shoeClicked,shoes)
+    };
   });
 });
 
   // Back về danh mục
   document.getElementById("back-category").addEventListener("click", e => {
     e.preventDefault();
-    renderShoesCategory(shoe.brand); // quay lại list brand
+    renderShoesCategory(shoe.brand,"",""); // quay lại list brand
     history.pushState({ page: shoe.brand }, "", `#${shoe.brand}`);
   });
   // (tùy chọn) add event để highlight size khi click

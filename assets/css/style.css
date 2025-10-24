@@ -210,3 +210,33 @@ main {
   color: inherit;
   display: block;
 }
+.breadcrumb {
+  display: flex;
+  align-items: center; /* Căn giữa icon và text theo chiều dọc */
+  gap: 6px; /* Khoảng cách giữa các phần */
+  font-size: 15px;
+  color: #333;
+}
+
+.breadcrumb-home {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  font-weight: 500;
+}
+
+.icon-home {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  margin-right: 4px;
+}
+
+.breadcrumb-separator {
+  color: #888;
+}
+
+.breadcrumb-current {
+  font-weight: 600;
+}

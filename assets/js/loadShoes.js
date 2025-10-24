@@ -1,6 +1,6 @@
 import { renderHome } from "./renderHome.js"; // path đúng nếu cùng folder
 import { renderShoeDetail } from "./loadShoeDetail.js";
-import { fetchShoesOnce /* hoặc subscribeShoes */ } from "./shoesApi.js";
+import { fetchProductsOnce /* hoặc subscribeShoes */ } from "./shoesApi.js";
 
 
 const fmtPrice = (n) => new Intl.NumberFormat("vi-VN").format(Number(n || 0)) + " VND";
@@ -8,17 +8,21 @@ const fmtPrice = (n) => new Intl.NumberFormat("vi-VN").format(Number(n || 0)) + 
 
 
 // Nhận category làm tham số
-export async function renderShoesCategory(category) {
+export async function renderShoesCategory(categoryKey,categoryName,categoryBrand) {
   const main = document.getElementById("main-content");
-    console.log("Category:", category);
+  console.log("Category:", categoryKey, "--Brand:", categoryBrand,"---categoryName:",categoryName);
 
 
   main.innerHTML = `
   <div class="category-container">
-    <div class="breadcrumb">
-      <a href="#" id="back-home">&lt; Trang chủ</a> / <span>${category}</span>
-    </div>
-    <h2 class="category-title-page">${category}</h2>
+   <div class="breadcrumb">
+  <a href="#" id="back-home" class="breadcrumb-home">
+    <img src="assets/images/ic_home.png" class="icon-home" alt="Trang chủ">
+    <span>Trang chủ</span>
+  </a>
+  <span class="breadcrumb-separator">›</span>
+  <span class="breadcrumb-current">${categoryName}</span>
+</div>
     <section class="shoes-list" id="shoesList">
     <div class="loading">Đang tải...</div>
     </section>
@@ -35,7 +39,18 @@ export async function renderShoesCategory(category) {
   const container = document.getElementById("shoesList");
 
 
-  const shoes = await fetchShoesOnce();
+  let shoes = await fetchProductsOnce(categoryKey);
+
+  if (!shoes.length) {
+    container.innerHTML = `<p class="no-data">Không có sản phẩm nào trong danh mục này.</p>`;
+    return;
+  }
+  if (categoryBrand) {
+    shoes = shoes.filter(
+      (s) => s.brand && s.brand.toLowerCase() === categoryBrand.toLowerCase()
+    );
+  }
+
   container.innerHTML = shoes.map(shoe => `
       <div class="shoe-card" data-id="${shoe.id}">
         <img src="${shoe.image}" alt="${shoe.name}" onerror="this.src='assets/images/image_placeholder.jpg'">
@@ -58,7 +73,7 @@ export async function renderShoesCategory(category) {
     });
   });
 
-  history.pushState({ page: category }, "", `#${category}`);
+  history.pushState({ page: categoryKey }, "", `#${categoryKey}`);
 }
 function attachCardClicks(shoes) {
   document.querySelectorAll(".shoe-card").forEach(card => {

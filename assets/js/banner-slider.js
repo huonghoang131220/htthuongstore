@@ -1,20 +1,60 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const slidesContainer = document.querySelector(".banner-slider .slides");
-  const slides = document.querySelectorAll(".banner-slider .slide");
-  const dots = document.querySelectorAll(".banner-slider .dot");
-  let currentIndex = 1; // bắt đầu từ 1 (vì sẽ clone)
-  let interval;
-  let startX = 0;
-  let isDragging = false;
+import { fetchProductsOnce } from "./shoesApi.js";
 
-  // Clone slide đầu & cuối
+export async function initBannerSlider() {
+  const slider = document.querySelector(".banner-slider");
+  if (!slider) {
+    console.warn("⚠️ Không tìm thấy .banner-slider trong DOM");
+    return;
+  }
+
+  const slidesContainer = slider.querySelector(".slides");
+  const dotsContainer = slider.querySelector(".dots");
+
+  // 🔹 1. Lấy dữ liệu banner từ Firebase
+  const banners = await fetchProductsOnce("banner");
+  if (!banners || banners.length === 0) {
+    console.warn("⚠️ Không có dữ liệu banner trong Firebase");
+    return;
+  }
+
+  slidesContainer.innerHTML = banners
+    .map(
+      (b) => `
+        <div class="slide">
+          <img src="${b.image}" alt="${b.title || "banner"}" class="banner-img" />
+          <div class="banner-info">
+            ${b.logo ? `<img src="${b.logo}" class="banner-logo" alt="logo" />` : ""}
+            ${b.title ? `<h2 class="banner-title">${b.title}</h2>` : ""}
+            ${b.path ? `<button class="banner-btn" data-path="${b.path}">Xem tại đây</button>` : ""}
+          </div>
+        </div>
+      `
+    )
+    .join("");
+
+
+  // 🔹 3. Render dots đúng theo số lượng banner
+  dotsContainer.innerHTML = banners
+    .map((_, i) => `<span class="dot ${i === 0 ? "active" : ""}"></span>`)
+    .join("");
+
+  // 🔹 4. Clone slide đầu & cuối
+  const slides = slider.querySelectorAll(".slide");
   const firstClone = slides[0].cloneNode(true);
   const lastClone = slides[slides.length - 1].cloneNode(true);
   slidesContainer.appendChild(firstClone);
   slidesContainer.insertBefore(lastClone, slides[0]);
 
-  const allSlides = document.querySelectorAll(".banner-slider .slide");
-  const totalSlides = allSlides.length;
+  // Lấy lại danh sách sau khi clone
+  const allSlides = slider.querySelectorAll(".slide");
+  const dots = slider.querySelectorAll(".dot");
+  const totalSlides = allSlides.length; // ✅ Khai báo ở đây để dùng trong các hàm bên dưới
+
+  // 🔹 5. Thiết lập trạng thái ban đầu
+  let currentIndex = 1;
+  let interval;
+  let startX = 0;
+  let isDragging = false;
 
   slidesContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
 
@@ -46,28 +86,19 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   slidesContainer.addEventListener("transitionend", () => {
-    // Khi đến clone cuối → nhảy về slide đầu thật
-    if (currentIndex === totalSlides - 1) {
-      goToSlide(1, true);
-    }
-    // Khi đến clone đầu → nhảy về slide cuối thật
-    if (currentIndex === 0) {
-      goToSlide(totalSlides - 2, true);
-    }
+    if (currentIndex === totalSlides - 1) goToSlide(1, true);
+    if (currentIndex === 0) goToSlide(totalSlides - 2, true);
   });
 
   function startAutoSlide() {
     stopAutoSlide();
-    interval = setInterval(() => {
-      nextSlide();
-    }, 4000);
+    interval = setInterval(nextSlide, 3000);
   }
 
   function stopAutoSlide() {
     clearInterval(interval);
   }
 
-  // Bấm dot
   dots.forEach((dot, index) => {
     dot.addEventListener("click", () => {
       goToSlide(index + 1);
@@ -75,7 +106,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Vuốt tay / chuột
   slidesContainer.addEventListener("mousedown", startDrag);
   slidesContainer.addEventListener("touchstart", startDrag);
 
@@ -93,7 +123,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const x = e.touches ? e.touches[0].clientX : e.clientX;
     const diff = x - startX;
     slidesContainer.style.transition = "none";
-    slidesContainer.style.transform = `translateX(${-currentIndex * 100 + diff / window.innerWidth * 100}%)`;
+    slidesContainer.style.transform = `translateX(${
+      -currentIndex * 100 + (diff / window.innerWidth) * 100
+    }%)`;
   }
 
   slidesContainer.addEventListener("mouseup", endDrag);
@@ -110,8 +142,26 @@ document.addEventListener("DOMContentLoaded", () => {
     else goToSlide(currentIndex);
     startAutoSlide();
   }
+// 🔹 6. Bắt sự kiện “Xem tại đây” (nếu có)
+slider.querySelectorAll(".banner-btn").forEach((btn, index) => {
+  btn.addEventListener("click", async (e) => {
+    const path = e.target.dataset.path || "";
+    if (!path) {
+      console.warn("⚠️ Banner chưa có path, bỏ qua.");
+      return;
+    }
 
-  //Khởi động
-  goToSlide(currentIndex, true);
- startAutoSlide();
+    const [categoryKey, categoryBrand] = path.split("/");
+    const banner = banners[index]; // lấy banner tương ứng theo vị trí
+    const categoryName = banner.title || categoryBrand || "Sản phẩm";
+
+    // Import hàm hiển thị sản phẩm
+    const { renderShoesCategory } = await import("./loadShoes.js");
+
+    renderShoesCategory(categoryKey, categoryName, categoryBrand);
+  });
 });
+  // 🔹 7. Khởi động slider
+  goToSlide(currentIndex, true);
+  startAutoSlide();
+}

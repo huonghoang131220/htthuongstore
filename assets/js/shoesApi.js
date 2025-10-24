@@ -8,8 +8,8 @@ import {
 
 const PATH = "shoes";
 
-export async function fetchShoesOnce() {
-  const snap = await get(child(ref(db), "shoes"));
+export async function fetchProductsOnce(category) {
+  const snap = await get(child(ref(db), category));
   const obj = snap.val() || {};
-  return Object.values(obj).sort((a,b) => (a.id ?? 0) - (b.id ?? 0));
+  return Object.values(obj).sort((a, b) => (a.id ?? 0) - (b.id ?? 0));
 }
