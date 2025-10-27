@@ -1,5 +1,4 @@
-* Reset cơ bản */
-* {
+* Reset cơ bản */ * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -14,23 +13,29 @@ body {
 
 /* Header tổng thể */
 .header {
- position: fixed;   /* cố định trên cùng */
+  position: fixed;
+  /* cố định trên cùng */
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000;     /* luôn ở trên các phần khác */
-  background-color: #fff; /* tránh trong suốt */
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  z-index: 1000;
+  /* luôn ở trên các phần khác */
+  background-color: #fff;
+  /* tránh trong suốt */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
+
 main {
-  margin-top: 120px; /* tổng chiều cao header-top + header-main */
+  margin-top: 120px;
+  /* tổng chiều cao header-top + header-main */
 }
 
 .header-top {
   position: relative;
   background-color: #fff;
   font-size: 14px;
-  border-bottom: none; /* ẩn border gốc */
+  border-bottom: none;
+  /* ẩn border gốc */
   padding: 6px 15%;
 }
 
@@ -38,11 +43,15 @@ main {
   content: "";
   position: absolute;
   bottom: 0;
-  left: 15%;      /* cách trái 15% */
-  right: 15%;     /* cách phải 15% */
-  height: 1px;    /* độ dày viền */
+  left: 15%;
+  /* cách trái 15% */
+  right: 15%;
+  /* cách phải 15% */
+  height: 1px;
+  /* độ dày viền */
   background-color: #eee;
 }
+
 .header-top .container {
   display: flex;
   justify-content: space-between;
@@ -58,7 +67,8 @@ main {
 }
 
 .header-top .social a:hover {
-  color: #d63384; /* hồng nhẹ */
+  color: #d63384;
+  /* hồng nhẹ */
 }
 
 /* --- Header main --- */
@@ -99,32 +109,43 @@ main {
 
 /* --- Responsive --- */
 @media (max-width: 768px) {
-  .header-top .container,
+  .header-top .container {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+  }
+
   .header-main .container {
-    flex-direction: column;
-    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 10px 5%;
+  }
+
+  .logo a {
+    font-size: 22px;
   }
 
   .nav ul {
-    flex-direction: column;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .nav li {
-    margin: 0px 0;
+    margin: 8px;
   }
 }
-/* --- Dropdown menu --- */
 
+/* --- Dropdown menu --- */
 /* Ẩn menu con mặc định */
 .nav .dropdown-menu {
   display: none;
   position: absolute;
-  top: 120%; /* nằm ngay dưới "Danh mục" */
+  top: 120%;
+  /* nằm ngay dưới "Danh mục" */
   left: 0;
   background-color: #fff;
   border: 1px solid #eee;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   list-style: none;
   padding: 8px 0;
   min-width: 200px;
@@ -167,21 +188,25 @@ main {
 .nav .dropdown {
   position: relative;
 }
+
 .dropdown-icon {
   font-size: 10px;
   margin-left: 6px;
   transition: transform 0.2s ease;
 }
+
 /* Khi hover vào thì xoay icon lên */
 .dropdown:hover .dropdown-icon {
   transform: rotate(180deg);
 }
+
 .icon {
   width: 22px;
   height: 22px;
   vertical-align: middle;
   margin-right: 6px;
-  border-radius: 4px; /* bo nhẹ góc icon */
+  border-radius: 4px;
+  /* bo nhẹ góc icon */
 }
 
 .social-icon {
@@ -203,69 +228,45 @@ main {
 }
 
 .social-icon:hover {
-  color: #00aaff; /* hiệu ứng chữ đổi màu khi hover */
+  color: #00aaff;
+  /* hiệu ứng chữ đổi màu khi hover */
 }
+
 .category-link {
   text-decoration: none;
   color: inherit;
   display: block;
 }
-.buttons {
+
+.breadcrumb {
   display: flex;
-  gap: 12px;        /* khoảng cách giữa các nút */
-  flex-wrap: wrap;   /* nếu nhỏ màn hình, xuống hàng */
-}
-
-/* Nút chung */
-.buttons .btn {
-  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 200px;       /* set cứng */
-  height: 50px;
-  padding: 0 12px;
-  border-radius: 8px;
+  /* Căn giữa icon và text theo chiều dọc */
+  gap: 6px;
+  /* Khoảng cách giữa các phần */
+  font-size: 15px;
+  color: #333;
+}
+
+.breadcrumb-home {
+  display: flex;
+  align-items: center;
   text-decoration: none;
-  font-weight: 600;
-  color: #fff;
-  background: #555;   /* màu mặc định nếu cần */
-  transition: all 0.3s ease;
+  color: inherit;
+  font-weight: 500;
 }
 
-/* Nút Zalo */
-.buttons .zalo-btn {
-  background: #00aaff;
-}
-
-/* Nút Messenger */
-.buttons .messenger-btn {
-  background: #ff1540;
-}
-
-/* Icon trong nút */
-.buttons .btn img {
-  width: 28px;
-  height: 28px;
+.icon-home {
+  width: 18px;
+  height: 18px;
   object-fit: contain;
+  margin-right: 4px;
 }
 
-/* Hover */
-.buttons .btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+.breadcrumb-separator {
+  color: #888;
 }
 
-/* Mobile */
-@media (max-width: 768px) {
-  .buttons .btn {
-    width: 150px;
-    height: 45px;
-    font-size: 14px;
-  }
-
-  .buttons .btn img {
-    width: 22px;
-    height: 22px;
-  }
+.breadcrumb-current {
+  font-weight: 600;
 }

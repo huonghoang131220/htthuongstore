@@ -11,7 +11,8 @@
 
 .breadcrumb a {
   text-decoration: none;
-  color: #d63384; /* màu link */
+  color: #d63384;
+  /* màu link */
   transition: color 0.3s;
 }
 
@@ -35,34 +36,29 @@
 .shoes-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px; /* khoảng cách giữa các card */
-  justify-content: center; /* căn giữa card */
+  gap: 20px;
 }
 
-/* Card */
 .shoe-card {
-  background-color: #fef6f9; /* hồng nhạt pastel */
-  border: 1px solid #f3d6e4; /* viền nhạt */
-  border-radius: 8px;
-   padding: 10px;
+  width: 200px;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  padding: 10px;
   text-align: center;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  flex: 1 1 200px; /* card co giãn, min 200px */
-  max-width: 250px; /* giới hạn tối đa desktop */
 }
 
 .shoe-card:hover {
   transform: translateY(-5px);
-   border-color: #d63384; /* viền hồng nổi bật khi hover */
-  box-shadow: 0 8px 20px rgba(214,51,52,0.15);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .shoe-card img {
   width: 100%;
   height: 200px;
   border-radius: 4px;
-  object-fit: cover;
 }
+
 .shoe-card h4 {
   font-size: 16px;
   margin: 10px 0 5px;
@@ -85,31 +81,4 @@
 
 .shoe-card .status.out-stock {
   color: red;
-}
-/* Responsive: 2 item 1 dòng trên tablet/mobile */
-@media (max-width: 768px) {
-  .category-container {
-    padding: 10px 5%; /* giảm padding cho mobile */
-  }
-
-  .shoes-list {
-    gap: 10px;
-    justify-content: center; /* căn giữa các card */
-  }
-
-  .shoe-card {
-    width: calc(50% - 10px); /* 2 card 1 dòng, trừ gap */
-    height: auto; /* tự co chiều cao */
-  }
-
-  .shoe-card img {
-    height: 150px; /* giảm chiều cao ảnh */
-  }
-}
-
-/* Trường hợp điện thoại nhỏ hơn 480px: 1 item 1 dòng */
-@media (max-width: 480px) {
-  .shoe-card {
-    width: 100%;
-  }
 }
