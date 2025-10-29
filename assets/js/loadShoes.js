@@ -62,25 +62,25 @@ export async function renderShoesCategory(categoryKey,categoryName,categoryBrand
   `).join("");
 
 
- attachCardClicks(shoes);
+ attachCardClicks(shoes,categoryName,categoryKey);
 
   // 🟡 Thêm click để mở chi tiết sản phẩm
   document.querySelectorAll(".shoe-card").forEach(card => {
     card.addEventListener("click", () => {
       const id = parseInt(card.dataset.id);
-      const shoe = shoesData.find(s => s.id === id);
-      if (shoe) renderShoeDetail(shoe,shoes);
+      const shoe = shoes.find(s => s.id === id);
+      if (shoe) renderShoeDetail(shoe,shoes,categoryName,categoryKey);
     });
   });
 
   history.pushState({ page: categoryKey }, "", `#${categoryKey}`);
 }
-function attachCardClicks(shoes) {
+function attachCardClicks(shoes,categoryName,categoryKey) {
   document.querySelectorAll(".shoe-card").forEach(card => {
     card.addEventListener("click", () => {
       const id = parseInt(card.dataset.id, 10);
       const shoe = shoes.find(s => s.id === id);
-      if (shoe) renderShoeDetail(shoe,shoes);
+      if (shoe) renderShoeDetail(shoe,shoes,categoryName,categoryKey);
     });
   });
 }

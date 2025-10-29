@@ -49,6 +49,11 @@ document.addEventListener("DOMContentLoaded", () => {
         module.renderContact();
       });
     } 
+    else if (state.page === "category") {
+  import("./loadShoes.js").then(module => {
+    module.renderShoesCategory(state.categoryKey, state.categoryName, state.brand || "");
+  });
+}
     else {
       import("./loadShoes.js").then(module => {
         module.renderShoesCategory(state.page, state.page,"");

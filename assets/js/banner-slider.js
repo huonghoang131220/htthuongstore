@@ -25,7 +25,7 @@ export async function initBannerSlider() {
           <div class="banner-info">
             ${b.logo ? `<img src="${b.logo}" class="banner-logo" alt="logo" />` : ""}
             ${b.title ? `<h2 class="banner-title">${b.title}</h2>` : ""}
-            ${b.path ? `<button class="banner-btn" data-path="${b.path}">Xem tại đây</button>` : ""}
+            ${b.path ? `<button class="banner-btn" data-path="${b.path}">${b.buttonText}</button>` : ""}
           </div>
         </div>
       `

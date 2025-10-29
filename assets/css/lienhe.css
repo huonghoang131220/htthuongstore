@@ -151,10 +151,3 @@
 .btn.zalo:hover {
   background: #0052cc;
 }
-
-@media (max-width: 900px) {
-  .contact-container {
-    flex-direction: column;
-    padding: 40px 5%;
-  }
-}

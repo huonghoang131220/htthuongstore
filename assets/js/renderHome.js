@@ -9,23 +9,17 @@ export function renderHome() {
     <div class="slides">
       <!-- Slide 1 -->
       <div class="slide">
-        <img src="assets/images/bg_category.png" alt="Banner 1">
-        <div class="overlay">
-          <h2>KHÁCH HÀNG NÊN ĐỌC</h2>
-          <p>- Địa chỉ: 26 Ngũ Sơn, Thạch Thất, Hà Nội </p>
-          <p>- Không hoàn hàng, liên hệ tư vấn trước khi đặt hàng</p>
-          <p>- Đơn COD vui lòng cọc 100k - 200k và trả thêm 1.5% tổng giá trị</p>
-        </div>
+       
       </div>
 
-      <!-- Slide 2 -->
-      <div class="slide">
-        <img src="assets/images/bg_category.png" alt="Banner 2">
-        <div class="overlay center-text">
-          <h2>Htt.Huong Store</h2>
-        </div>
-      </div>
-    </div>
+    //   <!-- Slide 2 -->
+    //   <div class="slide">
+    //     <img src="assets/images/bg_category.png" alt="Banner 2">
+    //     <div class="overlay center-text">
+    //       <h2>Htt.Huong Store</h2>
+    //     </div>
+    //   </div>
+    // </div>
 
     <!-- Dots indicator -->
     <div class="dots">

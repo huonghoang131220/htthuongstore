@@ -23,6 +23,8 @@ export function setupNavigation() {
       });
 
       history.pushState({ page: categoryData }, "", `#${categoryData}`);
+      
+      
     });
   });
 }
