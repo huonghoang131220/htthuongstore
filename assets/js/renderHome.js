@@ -71,7 +71,7 @@ export function renderHome() {
       <img src="assets/images/ic_zalo.png" alt="Zalo"> 
       Zalo: 0367543039
     </a>
-    <a href="https://www.facebook.com/messages/t/8110668508980679" target="_blank" class="btn messenger-btn">
+    <a href="https://www.facebook.com/messages/t/100045226423170" target="_blank" class="btn messenger-btn">
       <img src="assets/images/ic_face.png" alt="Messenger"> 
       Chat Messenger
     </a>
