@@ -390,11 +390,14 @@ main {
   text-align: center; /* căn giữa nội dung */
 }
 
-/* Khi hover vào mục cha, hiển thị menu con */
-.nav .dropdown:hover .dropdown-menu {
- display: block;
+.nav .dropdown.open .dropdown-menu {
+  display: block;
   opacity: 1;
-  transform: translate(-50%, 0); /* đồng nhất transform */
+  transform: translate(-50%, 0);
+}
+
+.nav .dropdown.open .dropdown-icon {
+  transform: rotate(180deg);
 }
 
 /* Style cho từng mục con */
@@ -431,11 +434,6 @@ main {
   font-size: 10px;
   margin-left: 6px;
   transition: transform 0.2s ease;
-}
-
-/* Khi hover vào thì xoay icon lên */
-.dropdown:hover .dropdown-icon {
-  transform: rotate(180deg);
 }
 
 .icon {
@@ -509,7 +507,7 @@ main {
   font-weight: 600;
 }
 #main-content {
-  padding-top: 20px; /* bằng hoặc lớn hơn chiều cao header */
+  padding-top: 20px;
 }
 
 }

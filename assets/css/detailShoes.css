@@ -25,7 +25,7 @@
 .detail-part1 .main-image {
   width: 100%;
   max-width: 420px;
-  height: 420px;
+  height: auto;
   object-fit: contain;
   border-radius: 10px;
   background: #fafafa;
@@ -151,30 +151,6 @@
   font-weight: 700;
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-  .detail-part1 {
-    flex-direction: column;
-    padding: 20px;
-  }
-
-  .detail-part1 .left,
-  .detail-part1 .main-image {
-    width: 100%;
-    max-width: none;
-    height: 360px;
-  }
-
-  .actions {
-    flex-direction: column;
-  }
-
-  .size-btn {
-    min-width: 48px;
-    height: 40px;
-  }
-}
-
 /* ====== PHẦN 2 ====== */
 .detail-part2 {
   margin-top: 50px;
@@ -296,4 +272,122 @@
 .breadcrumb>span:last-child {
   color: #222;
   font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .page-detail {
+    margin: 10px 5%;
+    padding-top: 0px;
+  }
+
+  .breadcrumb {
+    font-size: 13px;
+    margin-bottom: 10px;
+  }
+
+  .detail-part1 {
+    display: block;
+    padding: 0;
+    gap: 0;
+    background: none;
+  }
+
+  .left {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .main-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    background: #fafafa;
+  }
+
+  .detail-part2 {
+    margin-top: 25px;
+  }
+
+  .gallery {
+    display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-top: 8px;
+  }
+
+  .gallery-img {
+   width: 100%;
+  aspect-ratio: 1/1; /* giữ vuông đều */
+  object-fit: cover;
+  border-radius: 6px;
+  background: #f8f8f8;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+
+  .right {
+    margin-top: 20px;
+  }
+
+  .right .title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 8px;
+  }
+
+  .right .price {
+    font-size: 18px;
+    color: #1558ff;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .sizes-list {
+    gap: 8px;
+  }
+
+  .size-btn {
+    min-width: 44px;
+    height: 40px;
+    font-size: 13px;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .btn {
+    justify-content: center;
+    font-size: 14px;
+  }
+
+  .related-title {
+    font-size: 18px;
+    margin-top: 25px;
+  }
+
+  .related-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .related-card {
+    width: calc(50% - 5px);
+  }
+
+  .related-card img {
+    height: auto;
+  }
+
+  .related-card h4 {
+    font-size: 13px;
+  }
+
+  .related-card .price {
+    font-size: 13px;
+  }
+  
+  
 }

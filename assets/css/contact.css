@@ -73,3 +73,79 @@
   color: #0d4eff;
   transform: translateY(-2px);
 }
+@media (max-width: 768px) {
+.contact-section {
+  background-color: #0d4eff; /* xanh dương nổi bật */
+  color: #fff;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.contact-section h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.contact-section p {
+  font-size: 16px;
+  margin-bottom: 35px;
+  opacity: 0.9;
+}
+
+/* --- Buttons container --- */
+.contact-section .buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+/* --- Button style --- */
+.contact-section .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #fff;
+  color: #0d4eff;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 8px;
+  padding: 10px 10px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.contact-section .btn img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+/* --- Zalo Button --- */
+.contact-section .zalo-btn {
+  background: #fff;
+  color: #0d4eff;
+}
+
+.contact-section .zalo-btn:hover {
+  background: #eaf0ff;
+  transform: translateY(-2px);
+}
+
+/* --- Messenger Button --- */
+.contact-section .messenger-btn {
+  background: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+}
+
+.contact-section .messenger-btn:hover {
+  background: #fff;
+  color: #0d4eff;
+  transform: translateY(-2px);
+}
+}

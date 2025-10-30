@@ -151,3 +151,71 @@
 .btn.zalo:hover {
   background: #0052cc;
 }
+@media (max-width: 768px) {
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 30px 5%;
+    background: #f9fafc;
+    box-sizing: border-box;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .contact-left, .contact-right {
+    width: 100%;
+    max-width: 600px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px 16px;
+    box-sizing: border-box;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  }
+
+  .contact-left h2, .contact-right h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .contact-left p, .contact-right p {
+    color: #555;
+    line-height: 1.5;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+
+  .form-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .btn {
+    flex: 1;
+    text-align: center;
+    padding: 12px 0;
+  }
+
+  .btn img {
+    width: 18px;
+    height: 18px;
+  }
+}

@@ -12,78 +12,13 @@ document.head.appendChild(link);
 const relatedShoes = shoes
 console.log("brand:", categoryName, "relatedShoes:", relatedShoes);
 
-  main.innerHTML = `
-    <div class="page-detail">
+const isMobile = window.innerWidth < 768;
 
-      <nav class="breadcrumb">
-        <a href="#" id="back-home"><img src="assets/images/ic_home.png" class="icon-home" alt="Trang chủ">
- Trang chủ</a> › 
-        <a href="#" id="back-category">${categoryName}</a> › 
-        <span>${shoe.name}</span>
-      </nav>
-
-      <!-- PHẦN 1 -->
-      <div class="detail-part1 container">
-        <div class="left">
-          <img src="${shoe.image}" alt="${shoe.name}" class="main-image">
-        </div>
-        <div class="right">
-          <div class="title">${shoe.name}</div>
-          <div class="price">${shoe.price.toLocaleString()} VND</div>
-
-          <div class="sizes">
-            <label class="sizes-title">Kích thước</label>
-            <div class="sizes-list">
-              ${[35,36,37,38,39,40,41,42,43,44,45].map(sz => `
-                <button class="size-btn" data-size="${sz}" type="button">${sz}</button>
-              `).join('')}
-            </div>
-          </div>
-
-          <div class="actions">
-            <a class="btn btn-messenger" href="https://www.facebook.com/messages/t/8110668508980679" target="_blank">
-              <span class="icon">📩</span> Đặt hàng qua Messenger
-            </a>
-            <a class="btn btn-zalo" href="https://zalo.me/0367543039" target="_blank">
-              <span class="icon">💬</span> Nhắn Zalo 0367543039
-            </a>
-          </div>
-
-          <div class="stock">
-            Tình trạng: <strong class="${shoe.status === 'Còn hàng' ? 'in-stock' : 'out-stock'}">${shoe.status}</strong>
-          </div>
-        </div>
-      </div>
-
-      <!-- PHẦN 2: ẢNH -->
-      <div class="detail-part2 container">
-        <h3>Hình ảnh sản phẩm</h3>
-        <div class="gallery">
-          ${shoe.images && shoe.images.length > 0
-            ? shoe.images.map(img => `<img src="${img}" alt="${shoe.name}" class="gallery-img">`).join("")
-            : "<p>Chưa có ảnh chi tiết.</p>"
-          }
-        </div>
-      </div>
-
-      <!-- PHẦN 3: SẢN PHẨM LIÊN QUAN -->
-      <div class="detail-part2 container">
-        <h3 class="related-title">Sản phẩm liên quan</h3>
-        <div class="related-list" id="relatedList">
-          ${relatedShoes.map(s => `
-            <div class="related-card" data-id="${s.id}">
-              <img src="${s.image}" alt="${s.name}">
-              <h4>${s.name}</h4>
-              <p class="price">${s.price.toLocaleString()} VND</p>
-            </div>
-          `).join("")}
-        </div>
-      </div>
-
-    </div>
-  `;
-
-
+if (isMobile) {
+    renderMobileUI(main, shoe, shoes, categoryName, categoryKey);
+  } else {
+    renderDesktopUI(main, shoe, shoes, categoryName, categoryKey);
+  }
   // --- PHẦN GALLERY: click để đổi ảnh chính ---
   const mainImage = document.querySelector('.main-image');
   const galleryImages = document.querySelectorAll('.gallery-img');
@@ -162,4 +97,162 @@ history.pushState(
     "",
     `#${categoryKey}`
   );
+}
+
+function renderDesktopUI(main, shoe, shoes, categoryName, categoryKey) {
+    const relatedShoes = shoes;
+    main.innerHTML = `
+    <div class="page-detail">
+
+      <nav class="breadcrumb">
+        <a href="#" id="back-home"><img src="assets/images/ic_home.png" class="icon-home" alt="Trang chủ">
+ Trang chủ</a> › 
+        <a href="#" id="back-category">${categoryName}</a> › 
+        <span>${shoe.name}</span>
+      </nav>
+
+      <!-- PHẦN 1 -->
+      <div class="detail-part1 container">
+        <div class="left">
+          <img src="${shoe.image}" alt="${shoe.name}" class="main-image">
+        </div>
+        <div class="right">
+          <div class="title">${shoe.name}</div>
+          <div class="price">${shoe.price.toLocaleString()} VND</div>
+
+          <div class="sizes">
+            <label class="sizes-title">Kích thước</label>
+            <div class="sizes-list">
+              ${[35,36,37,38,39,40,41,42,43,44,45].map(sz => `
+                <button class="size-btn" data-size="${sz}" type="button">${sz}</button>
+              `).join('')}
+            </div>
+          </div>
+
+          <div class="actions">
+            <a class="btn btn-messenger" href="https://www.facebook.com/messages/t/8110668508980679" target="_blank">
+              <span class="icon">📩</span> Đặt hàng qua Messenger
+            </a>
+            <a class="btn btn-zalo" href="https://zalo.me/0367543039" target="_blank">
+              <span class="icon">💬</span> Nhắn Zalo 0367543039
+            </a>
+          </div>
+
+          <div class="stock">
+            Tình trạng: <strong class="${shoe.status === 'Còn hàng' ? 'in-stock' : 'out-stock'}">${shoe.status}</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHẦN 2: ẢNH -->
+      <div class="detail-part2 container">
+        <h3>Hình ảnh sản phẩm</h3>
+        <div class="gallery">
+          ${shoe.images && shoe.images.length > 0
+            ? shoe.images.map(img => `<img src="${img}" alt="${shoe.name}" class="gallery-img">`).join("")
+            : "<p>Chưa có ảnh chi tiết.</p>"
+          }
+        </div>
+      </div>
+
+      <!-- PHẦN 3: SẢN PHẨM LIÊN QUAN -->
+      <div class="detail-part2 container">
+        <h3 class="related-title">Sản phẩm liên quan</h3>
+        <div class="related-list" id="relatedList">
+          ${relatedShoes.map(s => `
+            <div class="related-card" data-id="${s.id}">
+              <img src="${s.image}" alt="${s.name}">
+              <h4>${s.name}</h4>
+              <p class="price">${s.price.toLocaleString()} VND</p>
+            </div>
+          `).join("")}
+        </div>
+      </div>
+
+    </div>
+  `;
+
+
+}
+function renderMobileUI(main, shoe, shoes, categoryName, categoryKey) {
+  const relatedShoes = shoes;
+
+  main.innerHTML = `
+    <div class="page-detail mobile">
+      <nav class="breadcrumb">
+        <a href="#" id="back-home">
+          <img src="assets/images/ic_home.png" class="icon-home" alt="Trang chủ"> Trang chủ
+        </a> › 
+        <a href="#" id="back-category">${categoryName}</a> › 
+        <span>${shoe.name}</span>
+      </nav>
+
+      <!-- ẢNH CHÍNH -->
+      <div class="left">
+        <img src="${shoe.image}" alt="${shoe.name}" class="main-image">
+      </div>
+
+      <!-- HÌNH ẢNH SẢN PHẨM -->
+      <div class="detail-part2">
+        <h3>Hình ảnh sản phẩm</h3>
+        <div class="gallery">
+          ${
+            shoe.images?.length
+              ? shoe.images.map(img => `<img src="${img}" alt="${shoe.name}" class="gallery-img">`).join("")
+              : "<p>Chưa có ảnh chi tiết.</p>"
+          }
+        </div>
+      </div>
+
+      <!-- THÔNG TIN -->
+      <div class="right">
+        <div class="title">${shoe.name}</div>
+        <div class="price">${shoe.price.toLocaleString()} VND</div>
+
+        <div class="sizes">
+          <label class="sizes-title">Kích thước</label>
+          <div class="sizes-list">
+            ${[35,36,37,38,39,40,41,42,43,44,45]
+              .map(sz => `<button class="size-btn" data-size="${sz}" type="button">${sz}</button>`)
+              .join('')}
+          </div>
+        </div>
+
+        <div class="actions">
+          <a class="btn btn-messenger" href="https://www.facebook.com/messages/t/8110668508980679" target="_blank">
+            📩 Đặt hàng qua Messenger
+          </a>
+          <a class="btn btn-zalo" href="https://zalo.me/0367543039" target="_blank">
+            💬 Nhắn Zalo 0367543039
+          </a>
+        </div>
+
+        <div class="stock">
+          Tình trạng:
+          <strong class="${shoe.status === 'Còn hàng' ? 'in-stock' : 'out-stock'}">
+            ${shoe.status}
+          </strong>
+        </div>
+      </div>
+
+      <!-- SẢN PHẨM LIÊN QUAN -->
+      <div class="detail-part2">
+        <h3 class="related-title">Sản phẩm liên quan</h3>
+        <div class="related-list" id="relatedList">
+          ${relatedShoes
+            .map(
+              s => `
+            <div class="related-card" data-id="${s.id}">
+              <img src="${s.image}" alt="${s.name}">
+              <h4>${s.name}</h4>
+              <p class="price">${s.price.toLocaleString()} VND</p>
+            </div>
+          `
+            )
+            .join("")}
+        </div>
+      </div>
+    </div>
+  `;
+
 }

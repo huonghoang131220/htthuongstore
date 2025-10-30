@@ -11,6 +11,7 @@ function attachCategoryClicks() {
       const categoryName = link.textContent.trim();
       renderShoesCategory(categoryKey, categoryName,"");
       history.pushState({ page: categoryKey }, "", `#${categoryKey}`);
+window.scrollTo({ top: 0, behavior: "smooth" });
     });
   });
 
@@ -20,6 +21,7 @@ function attachCategoryClicks() {
       e.preventDefault();
       renderHome();
       history.replaceState({ page: "home" }, "", location.pathname);
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
   });
 
@@ -32,7 +34,7 @@ function attachCategoryClicks() {
 document.addEventListener("DOMContentLoaded", () => {
   renderHome();
   history.replaceState({ page: "home" }, "", location.pathname);
-
+window.scrollTo({ top: 0, behavior: "smooth" });
   // Gắn sự kiện click sau khi render lần đầu
   attachCategoryClicks();
 
@@ -69,6 +71,7 @@ function attachContactClick() {
       import("./contact.js").then(module => {
         module.renderContact();
         history.pushState({ page: "contact" }, "", "#contact");
+        window.scrollTo({ top: 0, behavior: "smooth" });
       });
     });
   });
